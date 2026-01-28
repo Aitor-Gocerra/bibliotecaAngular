@@ -1,0 +1,41 @@
+<h2>LISTA DE LIBROS</h2>
+<ul>
+    <li *ngFor = 'let libro of arrayLibros'>
+        {{libro.titulo}} - {{libro.autor}} - {{libro.editorial}} - {{libro.anoPublicacion}} - 
+        {{libro.numeroPaginas}} - {{libro.genero}} - {{libro.prestado ? 'Prestado' : 'Disponible'}} - 
+        {{libro.valoracion}}
+    </li>
+</ul>
+<h2>CRUD LIBRO</h2>
+<label for="titulo">Titulo: </label> &nbsp;
+<input type="text" [(ngModel)]="titulo" [disabled]="idLibro !== null"> <br>
+<label for="autor">Autor: </label> &nbsp;
+<input type="text" [(ngModel)]="autor" [disabled]="idLibro !== null"> <br>
+<label for="autor">Editorial: </label> &nbsp;
+<input type="text" [(ngModel)]="editorial" [disabled]="idLibro !== null"> <br>
+<label for="anio">Año Publicacion: </label> &nbsp;
+<input type="number" [(ngModel)]="anioPublicacion" [disabled]="idLibro !== null"> <br>
+<label for="numPag">Numero de paginas: </label> &nbsp;
+<input type="number" [(ngModel)]="numeroPaginas" [disabled]="idLibro !== null"> <br>
+<label for="genero">Genero: </label> &nbsp;
+<input type="text" [(ngModel)]="genero" [disabled]="idLibro !== null"> <br>
+<label for="anio">Estado: </label> &nbsp;
+<input type="radio" name="estadoLibro" [(ngModel)]="prestado" [value]="true">
+<label>Prestado</label> &nbsp;
+<input type="radio" name="estadoLibro" [(ngModel)]="prestado" [value]="false">
+<label>Disponible</label><br>
+<label for="valoracion">Valoracion: </label> &nbsp;
+<input type="number" [(ngModel)]="valoracion"> <br>
+<br>
+<button (click)="guardar()">{{ idLibro === null ? 'Agregar' : 'Actualizar' }}</button>
+<button *ngIf='idLibro !== null' (click)="limpiarFormulario()">Cancelar</button>
+<h2>LISTA DE LIBROS</h2>
+<ul>
+    <li *ngFor = 'let libro of arrayLibros'>
+        {{libro.titulo}} - {{libro.prestado ? 'Prestado' : 'Disponible'}} - 
+        {{libro.valoracion}}
+        &nbsp;
+        <button (click)="eliminar(libro.id)">Eliminar</button> &nbsp;
+        <button (click)="prepararEdicion(libro)">Actualizar</button><hr>
+    </li>
+</ul>
